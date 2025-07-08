@@ -3,7 +3,9 @@ import type { IBook } from "../../types/book";
 
 export const bookApi = createApi({
   reducerPath: "bookApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/books" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://a4backend.vercel.app/api/books",
+  }),
   tagTypes: ["Books"],
   endpoints: (builder) => ({
     getBooks: builder.query<IBook[], void>({

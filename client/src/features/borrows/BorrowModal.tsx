@@ -117,8 +117,10 @@ const BorrowModal: React.FC<BorrowModalProps> = ({ book, onClose }) => {
 
       toast.success("Book borrowed successfully!");
       onClose();
-    } catch {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       toast.error("Failed to borrow book. Please try again.");
+      console.log("borrow", error);
     }
   };
 

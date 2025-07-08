@@ -14,7 +14,9 @@ export interface IBorrowRequestData {
 
 export const borrowApi = createApi({
   reducerPath: "borrowApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/borrow" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://a4backend.vercel.app/api/borrows",
+  }),
   tagTypes: ["Borrows", "Books"], // Add Books tag here too
   endpoints: (builder) => ({
     // Borrow a book mutation

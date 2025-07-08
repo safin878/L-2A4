@@ -9,7 +9,21 @@ const book_route_1 = __importDefault(require("./routes/book.route"));
 const borrow_route_1 = __importDefault(require("./routes/borrow.route"));
 const errorHandler_1 = require("./middlewares/errorHandler");
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
+const allowedOrigins = ["http://localhost:5173", "https://l-2-a4.vercel.app"];
+app.use((0, cors_1.default)({
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin)
+            return callback(null, true);
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        }
+        else {
+            return callback(new Error("Not allowed by CORS"));
+        }
+    },
+    credentials: true,
+}));
 app.use(express_1.default.json());
 app.get("/", (req, res) => {
     res.send("Welcome to Library Management System!!");
